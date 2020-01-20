@@ -1,0 +1,138 @@
+
+{% extends "_layout.html" %}
+
+{% block body %}
+
+<blockquote><h4>Project settings</h4></blockquote>
+
+<div class="projectsSettings">
+	{% if errors %}{% for error in errors %}
+		{{ htmlHelper.alert('error', error)}}
+	{% endfor %} {% endif %}
+	{% if settings %}{% for project in settings %}
+		<div class="projectData">
+			<div class="baseData">{{ project['projectName'] }} <b>{{ project['projectType'] }}</b>
+				<div class="deleteProject">
+					<form method="post">
+						<input type="hidden" name="action" value="delProject">
+						<input type="hidden" name="projectName" value="{{ project['projectName'] }}">
+						{{ materialize.button('Edit', {'id':'addLog', 'class':'editContent blue'}, 'create') }}
+						{{ materialize.submit('Delete', {'class':'red', 'icon':'delete_sweep', 'confirm':'true'}) }}
+					</form>
+				</div>
+				<div class="col s12 editContainer">
+					<form method="post">
+						<input type="hidden" name="action" value="editProject">
+						<input type="hidden" name="projectName" value="{{ project['projectName'] }}">
+						{{ materialize.input('Name', 'newProjectName', project['projectName']) }}
+						{{ materialize.submit('Update') }}
+						{{ materialize.button('Cancel', {'class':'cancelEdit'}, 'cancel') }}
+						{{ materialize.submit('Move up', {'name':'moveUp', 'class':'green', 'icon':'arrow_upward'}) }}
+						{{ materialize.submit('Move down', {'name':'moveDown', 'class':'green', 'icon':'arrow_downward'}) }}
+
+					</form>
+				</div>
+			</div>
+			<div class="logsData">
+				{% if project['projectLogs'] %} {% for log in project['projectLogs'] %}
+					<div class="row data logData">
+						<div class="col s3 name"><i class="material-icons logIcon">comment</i> {{ log['name'] }}</div>
+						<div class="col s6 path">{{ log['path'] }}</div>
+						<div class="col s3 deleteButton">
+							<form method="post">
+								<input type="hidden" name="action" value="delLog">
+								<input type="hidden" name="projectName" value="{{ project['projectName'] }}">
+								<input type="hidden" name="name" value="{{ log['name'] }}">
+								{{ materialize.button('Edit', {'id':'addLog', 'class':'editContent blue'}, 'create') }}
+								{{ materialize.submit('Delete', {'class':'red','icon':'delete_forever', 'confirm':'true'}) }}
+							</form>
+						</div>
+						<div class="col s12 editContainer">
+							<form method="post">
+								<input type="hidden" name="action" value="editLog">
+								<input type="hidden" name="projectName" value="{{ project['projectName'] }}">
+								<input type="hidden" name="name" value="{{ log['name'] }}">
+								{{ materialize.input('Name', 'newName', log['name'], {'class':'newName'}) }}
+								{{ materialize.input('Path', 'newPath', log['path']) }}
+								{{ materialize.submit('Update') }}
+								{{ materialize.button('Cancel', {'id':'addLog', 'class':'cancelEdit'}, 'cancel') }}
+								{{ materialize.submit('Move up', {'name':'moveUp', 'class':'green', 'icon':'arrow_upward'}) }}
+								{{ materialize.submit('Move down', {'name':'moveDown', 'class':'green', 'icon':'arrow_downward'}) }}
+							</form>
+						</div>
+						<div class="col s12"><hr></div>
+					</div>
+				{% endfor %} {% endif %}
+				<div class="addButton">
+					{{ materialize.button('Add Log', {'id':'addLog', 'class':'addLog'}, 'add') }}
+				</div>
+				<div class="addLogContainer">
+					<form method="post">
+						<input type="hidden" name="action" value="addLog">
+						<input type="hidden" name="projectName" value="{{ project['projectName'] }}">
+						{{ materialize.input('Name', 'name', '', {'class':'name'}) }}
+						{{ materialize.input('Path', 'path') }}
+						{{ materialize.submit('Save') }}
+					</form>
+				</div>
+			</div>
+			<div class="batData">
+				{% if project['projectBats'] %} {% for bat in project['projectBats'] %}
+					<div class="row data batData">
+						<div class="col s3 name"><i class="material-icons batIcon">local_library</i> {{ bat['name'] }}</div>
+						<div class="col s6 path">{{ bat['path'] }}</div>
+						<div class="col s3 deleteButton">
+							<form method="post">
+								<input type="hidden" name="action" value="delBat">
+								<input type="hidden" name="projectName" value="{{ project['projectName'] }}">
+								<input type="hidden" name="name" value="{{ bat['name'] }}">
+								{{ materialize.button('Edit', {'id':'addLog', 'class':'editContent blue'}, 'create') }}
+								{{ materialize.submit('Delete', {'class':'red','icon':'delete_forever', 'confirm':'true'}) }}
+							</form>
+						</div>
+						<div class="col s12 editContainer">
+							<form method="post">
+								<input type="hidden" name="action" value="editBat">
+								<input type="hidden" name="projectName" value="{{ project['projectName'] }}">
+								<input type="hidden" name="name" value="{{ bat['name'] }}">
+								{{ materialize.input('Name', 'newName', bat['name'], {'class':'newName'}) }}
+								{{ materialize.input('Path', 'newPath', bat['path']) }}
+								{{ materialize.submit('Update') }}
+								{{ materialize.button('Cancel', {'id':'addLog', 'class':'cancelEdit'}, 'cancel') }}
+								{{ materialize.submit('Move up', {'name':'moveUp', 'class':'green', 'icon':'arrow_upward'}) }}
+								{{ materialize.submit('Move down', {'name':'moveDown', 'class':'green', 'icon':'arrow_downward'}) }}
+							</form>
+						</div>
+						<div class="col s12"><hr></div>
+					</div>
+				{% endfor %} {% endif %}
+				<div class="addButton">
+					{{ materialize.button('Add bat', {'id':'addBat', 'class':'addBat'}, 'add') }}
+				</div>
+				<div class="addBatContainer">
+					<form method="post">
+						<input type="hidden" name="action" value="addBat">
+						<input type="hidden" name="projectName" value="{{ project['projectName'] }}">
+
+						{{ materialize.input('Name', 'name', '', {'class':'name'}) }}
+						{{ materialize.input('Path', 'path') }}
+						{{ materialize.submit('Save') }}
+					</form>
+				</div>
+			</div>
+		</div>
+	{% endfor %}{% endif %}
+	<div class="addProjectSection">
+		{{ materialize.button('Add project', {'id':'addProject'}, 'add') }}
+		<div class="addProjectContainer">
+			<form method="post">
+				<input type="hidden" name="action" value="addProject">
+				{{ materialize.input('Project name', 'name', '', {'class':'name'}) }}
+				{{ materialize.dropdown('Project Type', 'type', projectTypes) }}
+				{{ materialize.submit('Save') }}
+			</form>
+		</div>
+	</div>
+</div>
+{% endblock %}
+

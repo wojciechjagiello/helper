@@ -1,0 +1,268 @@
+/* fallback */
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: url(../fonts/material-icons.woff2) format('woff2');
+}
+
+$base-color: #1565C0;
+$second-color :#f5f5f5;
+$third-color : #ffb300;
+
+$white-color: #fff;
+$log-color: #fb8c00;
+$bat-color: #00acc1;
+
+$warning-color: #e2ce14;
+
+
+
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+}
+
+.img-logo{
+	max-height:65px;
+}
+body{
+    max-width: 1300px;
+    margin: auto;
+}
+
+nav{
+	background-color: $base-color;
+}
+blockquote{
+	border-color: $base-color;
+}
+
+body{
+	background-color: $white-color;
+}
+html{
+	background-color: $second-color;
+	height:100%;
+
+}
+.basePage{
+	padding-bottom: 20px;
+}
+.projectsSettings{
+	 margin:50px 0;
+	 background-color: $white-color;
+	 .addProjectContainer{
+		 display: none;
+		 .input-field{
+			 width:200px;
+			 float: left;
+			 margin-right: 10px;
+		 }
+		 .btn{
+			margin-top: 25px;
+		 }
+	 }
+}
+.projectData{
+	padding:10px;
+	margin: 20px 0;
+	border-width:3px 0;
+	border-color:$third-color;
+	border-style:solid;
+	border-radius: 30px;
+
+	.baseData{
+		font-size: 26px;
+		.deleteProject{
+			float: right;
+		}
+	}
+	.logsData,.batData{
+		background-color: #fff;
+		padding: 10px;
+		margin: 10px 0;
+
+	}
+	.addButton{
+		text-align: right;
+	}
+	.addLogContainer, .addBatContainer
+	{
+		display:none;
+		.input-field{
+			 width:500px;
+			 float: left;
+			 margin-right: 10px;
+		 }
+		 .btn{
+			margin-top: 25px;
+		}
+		.name{
+			max-width: 170px;
+		}
+	}
+	.data{
+		background-color: #fff;
+		padding: 10px;
+		margin: 10px 0;
+	}
+	.editContainer{
+		display:none;
+		.input-field{
+			 width:500px;
+			 float: left;
+			 margin-right: 10px;
+		 }
+		 .btn{
+			margin-top: 25px;
+		}
+		.newName{
+			max-width: 170px;
+		}
+	}
+}
+.addProjectSection{
+	padding-bottom: 20px;
+	margin-left:20px;
+}
+
+.logsContainer{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+	background-color: #fff;
+	z-index: 1;
+	padding: 20px;
+	display:none;
+	height:100%;
+	.container{
+		font-size: 14px;
+	}
+	.closeLogsContainer{
+		position: fixed;
+		right: 4px;
+		top: 4px;
+		background-color: red;
+		font-weight: bold;
+		cursor:pointer;
+		.material-icons{
+			font-size: 40px;
+			color:#fff;
+		}
+	}
+	.closeLogsContainer2{
+		position: fixed;
+		left: 48%;
+		bottom:5px;
+		background-color: red;
+		font-weight: bold;
+		cursor:pointer;
+		.material-icons{
+			font-size: 20px;
+			color:#fff;
+			margin: 2px 11px;
+		}
+	}
+}
+.singleLogContainer{
+	display: block;
+	.content{
+	    line-height: 2;
+	}
+}
+.projectAction.process{
+	border-color: green;
+    border-width: 3px;
+    border-style: solid;
+}
+.projectAction{
+	.preloader-wrapper{
+		float: left;
+	}
+}
+.watcher{
+	padding:10px;
+	margin: 20px 0;
+	border-width:3px 0;
+	border-color:$third-color;
+	border-style:solid;
+	border-radius: 30px;
+	.entry{
+		background-color: #fff;
+		padding: 10px;
+		display: flex;
+		font-size: 20px;
+		.label{
+			margin-left: 20px;
+		}
+	}
+	button{
+		margin-top: 30px;
+		margin-left: 50px;
+	}
+}
+.watcherRunSection{
+	padding-bottom: 20px;
+	margin-left:20px;
+}
+.logData, .batData{
+	.name{
+		max-width: 170px;
+	}
+	.path{
+	    line-height: 33px;
+	}
+}
+.btn{
+	height: 30px;
+    line-height: 30px;
+	padding: 0 9px;
+}
+.logIcon{
+	background-color: $log-color;
+	padding:2px;
+	color:$white-color;
+}
+.batIcon{
+	background-color: $bat-color;
+	padding:2px;
+	color:$white-color;
+}
+.cancelEdit {
+	background-color: $warning-color;
+}
+
+.card-alert
+{
+	button {
+	  background: none;
+	  border: none;
+	  position: absolute;
+	  top: 15px;
+	  right: 10px;
+	  font-size: 20px;
+	  color: #fff;
+	}
+	.card-content{
+		font-size: 24px;
+		padding:10px;
+	}
+
+	.material-icons{
+		margin-right: 20px;
+	}
+}

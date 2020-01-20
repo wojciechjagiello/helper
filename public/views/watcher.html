@@ -1,0 +1,34 @@
+{% extends "_layout.html" %}
+
+{% block body %}
+<blockquote><h4>Log Watcher</h4></blockquote>
+	<form method="post" action="{{ path_for('watcher') }}">
+		<div class="watcher">
+			{% if data %}{% for project in data %}
+				{% if project['projectLogs'] %} {% for log in project['projectLogs'] %}
+				<div class="entry">
+					{% set key = project['projectName']~'__'~log['name'] %}
+					{% if watcher[key] %}
+						<a class="btn-floating btn-small cyan pulse"><i class="material-icons">notifications_active</i></a> <div class="label">{{ project['projectName']~' - '~log['name'] }}</div>
+					{% else %}
+						{% if watcher %}
+						<a class="btn-floating btn-small grey "><i class="material-icons">notifications_off</i></a>
+						{% else %}
+							{{ materialize.checkbox(project['projectName']~ '__'~log['name']) }}
+						{% endif %}
+						<div class="label">{{ project['projectName']~' - '~log['name'] }}</div>
+					{% endif %}
+				</div>
+				{% endfor %} {% endif %}
+			{% endfor %} {% endif %}
+		</div>
+		<div class="watcherRunSection">
+			{% if watcher %}
+				<input type="hidden" name="stopWatcher" value="stopWatcher">
+				{{ materialize.submit('Stop', {'class':'red', 'icon':'notifications_off'}) }}
+			{% else %}
+				{{ materialize.submit('Run') }}
+			{% endif %}
+		</div>
+	</form>
+{% endblock %}

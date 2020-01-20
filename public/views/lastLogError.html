@@ -1,0 +1,14 @@
+{% extends "_layout.html" %}
+
+{% block body %}
+<blockquote><h4>Last error</h4></blockquote>
+
+<div class="basePage">
+	<div class="logsContainer singleLogContainer">
+		<div class="content">{{ content | raw}}</div>
+	</div>
+	<form method="post" id="runMainAction" action="{{ path_for('watcher') }}">
+		<input type="hidden" name="dataTarget" value="" id="dataTarget">
+	</form>
+</div>
+{% endblock %}

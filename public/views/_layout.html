@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Webmaster helper</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<link rel="stylesheet" href="{{ baseUrl }}/css/materialize.css"/>
+		<link rel="stylesheet" href="{{ baseUrl }}/css/base.css?v={{ time }}"/>
+
+		<script src="{{ baseUrl }}/js/jquery.js"></script>
+		<script src="{{ baseUrl }}/js/materialize.js"></script>
+		<script src="{{ baseUrl }}/js/base.js?v=78567{{ time }}"></script>
+		  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	</head>
+	<body>
+	<nav>
+		<div class="nav-wrapper">
+			<a href="{{ path_for('home') }}" class="brand-logo right">
+				<img class="img-logo" src="{{ baseUrl }}/img/logo.png">
+			</a>
+			<ul id="nav-mobile" class="left hide-on-med-and-down">
+				<li><a href="{{ path_for('home') }}">HOME</a></li>
+				<li><a href="{{ path_for('settings') }}">SETTINGS</a></li>
+				<li><a href="{{ path_for('watcher' ) }}">LOG WATCHER</a></li>
+				<li>{% if watcher %}<a href="{{ path_for('watcher') }}" class="btn-floating btn-small cyan pulse"><i class="material-icons">notifications_active</i></a>{% endif %}</li>
+			</ul>
+		</div>
+	</nav>
+	{% block body %}
+	{% endblock %}
+	{% if watcher %}
+		<script>
+			window.watcher = 'true';
+			window.watcherUrl = '{{ path_for("checkLogErrors") }}';
+			window.notificationIcon = '{{ baseUrl }}/img/notification_icon.png';
+			window.notificationFullLogContent = '{{ baseUrl }}/error';
+		</script>
+	{% endif %}
+	<script>
+		window.logFullContentUrl = '{{ path_for("logfullContent") }}';
+		window.runBatUrl = '{{ path_for("runBat") }}';
+	</script>
+	</body>
+</html>

@@ -1,0 +1,30 @@
+{% extends "_layout.html" %}
+
+{% block body %}
+<blockquote><h4>Project review</h4></blockquote>
+
+<div class="basePage">
+	{% if data %}{% for project in data %}
+		<div class="projectData">
+			<div class="baseData">{{ project['projectName'] }} </div>
+			<div class="data">
+				{% if project['projectLogs'] %} {% for log in project['projectLogs'] %}
+					{{ materialize.button( log['name'], {'class':'projectAction orange darken-1', 'data-type':'log', 'data-project':project['projectName'], 'data-name':log['name']}, 'comment') }}
+				{% endfor %} {% endif %}
+
+				{% if project['projectBats'] %} {% for bat in project['projectBats'] %}
+					{{ materialize.button( bat['name'], {'class':'projectAction Log cyan darken-1', 'data-type':'bat', 'data-project':project['projectName'], 'data-name':bat['name']}, 'local_library') }}
+				{% endfor %} {% endif %}
+			</div>
+		</div>
+	{% endfor %}{% endif %}
+
+	<div class="logsContainer">
+		<div class="content">
+
+		</div>
+		<div class="closeLogsContainer"><i class="material-icons">close</i></div>
+		<div class="closeLogsContainer2"><i class="material-icons">close</i><i class="material-icons">close</i><i class="material-icons">close</i><i class="material-icons">close</i></div>
+	</div>
+</div>
+{% endblock %}
